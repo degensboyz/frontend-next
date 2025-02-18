@@ -1,0 +1,14 @@
+.scrollbar-pretty {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(79 70 229 / var(--tw-bg-opacity, 1)) #fff;
+}
+
+.scrollbar-pretty::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scrollbar-pretty::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+
