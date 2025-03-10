@@ -71,7 +71,7 @@ export default function ProductPage() {
                         <div className="flex flex-row gap-2 overflow-x-auto py-2 scrollbar-pretty">
                             {subImage.map((image, index) => (
                                 <Image src={image}
-                                    className="cursor-pointer hover:border-2 hover:border-indigo-600 rounded-md"
+                                    className={`cursor-pointer hover:border-2 hover:border-indigo-600 rounded-md ${selectedImage === image ? "border-2 border-indigo-600" : ""}`}
                                     key={index.toString()}
                                     alt="Star"
                                     width={60}
@@ -85,18 +85,18 @@ export default function ProductPage() {
                 </div>
                 <div>
                     {/* <div></div> */}
-                    <h1 className="text-2xl font-bold">Ground Nuts Oil Pack 50kg</h1>
+                    <h1 className="text-2xl font-bold text-white">Ground Nuts Oil Pack 50kg</h1>
                     <h5 className="text-sm text-gray-500">500 Ratings</h5>
                     <p className="text-sm text-gray-500">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur earum beatae, itaque veniam similique eum doloremque repudiandae eveniet labore maxime delectus praesentium blanditiis, aperiam reprehenderit sequi id provident suscipit dicta architecto temporibus distinctio harum. Corrupti dolorum, ipsam rerum officia vero in nobis modi! Exercitationem, possimus aliquam quisquam similique eveniet neque.
                     </p>
                     <div className="flex flex-row gap-2 mt-4">
-                        <h3 className="text-2xl font-bold">1000 THB</h3>
+                        <h3 className="text-2xl font-bold text-white">1000 THB</h3>
                         {/* <button className="bg-indigo-600 text-white px-4 py-2 rounded-md">Add to Cart</button> */}
                     </div>
 
                     <div className="flex flex-col gap-2 py-4">
-                        <h1>Weight</h1>
+                        <h1 className="text-2xl font-bold text-white">Weight</h1>
                         <div className="flex flex-row gap-4">
                             {options.map((option) => (
                                 <button key={option.id} onClick={() => setSelectedOption(option.id)} className={`${selectedOption === option.id ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-600"} px-4 py-2 rounded-md`}>{option.name}</button>
@@ -106,7 +106,7 @@ export default function ProductPage() {
                     <div className="flex gap-2">
                         <div className="flex flex-row gap-2">
                             <button className="bg-indigo-600 text-white px-4 py-2 rounded-md" onClick={() => updateCurrentQuantity(currentQuantity - 1)}>-</button>
-                            <label htmlFor="quantity" className="text-2xl font-bold pt-2">{currentQuantity}</label>
+                            <label htmlFor="quantity" className="text-2xl font-bold pt-2 text-white">{currentQuantity}</label>
                             <button className="bg-indigo-600 text-white px-4 py-2 rounded-md" onClick={() => updateCurrentQuantity(currentQuantity + 1)}>+</button>
                         </div>
                         <button className="bg-indigo-600 text-white px-4 py-2 rounded-md">Add to cart</button>
@@ -127,7 +127,7 @@ export default function ProductPage() {
                     <h1>/</h1>
                     <button onClick={() => setSelectedSubMenu('Shipping')} className={`${selectedSubMenu === 'Shipping' ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-600"} px-4 py-2 rounded-md`}>Shipping</button>
                 </div>
-                <div className="bg-gray-800 rounded-md p-4 mt-8">
+                <div className="bg-gray-800 rounded-md p-4 mt-8 text-white">
                     {selectedSubMenu === 'Reviews' && <BoxReviews />}
 
                 </div>

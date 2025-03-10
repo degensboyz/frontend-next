@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ProductGrid({ items }: { items: { id: number, name: string, image: string }[] }) {
+export default function ProductGrid({ items }: { items: { id: number, name: string, image: string, price: number }[] }) {
     return (
-        <div className="p-6 sm:ml-64">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+        <div className="p-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6">
                 {items.map((item) => (
                     <div
                         key={item.id}
@@ -12,7 +12,7 @@ export default function ProductGrid({ items }: { items: { id: number, name: stri
                     >
                         <div className="w-full h-40 relative">
                             <Image
-                                src="https://placehold.co/400x400/000000/FFF?text=FFF"
+                                src={item.image}
                                 alt={item.name}
                                 layout="fill"
                                 objectFit="cover"
@@ -27,7 +27,7 @@ export default function ProductGrid({ items }: { items: { id: number, name: stri
                             This is a description of {item.name}.
                         </p>
                         <p className="mt-2 text-lg font-bold text-indigo-600 dark:text-indigo-400">
-                            $19.99
+                            {item.price}
                         </p>
                         <Link
                             key={item.id.toString()}

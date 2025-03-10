@@ -5,6 +5,7 @@
 
 .scrollbar-pretty::-webkit-scrollbar {
     width: 12px;
+    border-radius: 10px;
 }
 
 .scrollbar-pretty::-webkit-scrollbar-track {
