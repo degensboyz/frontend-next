@@ -10,6 +10,5 @@ export function AxiosInstance() {
             Authorization: token ? `Bearer ${token}` : "",
         },
     });
-
     return axiosInstance;
 }

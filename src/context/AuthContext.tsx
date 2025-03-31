@@ -8,6 +8,7 @@ interface AuthContextProps {
     user: any;
     login: (username: string, password: string) => Promise<{ success: boolean, data: any }>;
     logout: () => void;
+    register: (username: string, password: string) => Promise<{ success: boolean, data: any }>;
 }
 
 const AuthContext = createContext<AuthContextProps | null>(null);
@@ -21,7 +22,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Check if token exists in localStorage
         const token = localStorage.getItem("token");
         if (token) {
-            console.log(token);
+            
             fetchUser(token);
             return;
         }
@@ -66,6 +67,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             }
         }
     };
+    const register = async (username: string, password: string) => {
+        try {
+            const res = await axios.post("/user/register", { username, password });
+            if (res.data.success) {
+                return {
+                    success: true,
+                    data: res.data.message
+                }
+            } else {
+                return {
+                    success: false,
+                    data: res.data.message
+                }
+            }
+        } catch (error) {
+            console.error(error);
+            return {
+                success: false,
+                data: "Register failed"
+            }
+        }
+    }
 
     const logout = () => {
         localStorage.removeItem("token");
@@ -73,7 +96,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         router.push("/sign-in");
     };
 
-    return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={{ user, login, logout, register }}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

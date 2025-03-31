@@ -1,11 +1,12 @@
 "use client"
+import { useAuth } from "@/context/AuthContext"
 import { AxiosInstance } from "@/utils/axios"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Swal from "sweetalert2"
 export default function Login() {
     const axios = AxiosInstance();
-    const router = useRouter()
+    const { register } = useAuth() ?? {};
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
@@ -19,11 +20,8 @@ export default function Login() {
             })
             return
         }
-        const response = await axios.post("/user/register", { username, password }, { withCredentials: true }).catch((err) => {
-            console.log(err)
-            return err.response
-        });
-        if (response.data.success) {
+        const response = await register(username, password)
+        if (response.success) {
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
