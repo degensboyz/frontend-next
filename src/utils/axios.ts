@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 export function AxiosInstance() {
     const token = Cookies.get("accessToken");
-
+    // console.log({ token });
     const axiosInstance = axios.create({
         baseURL: process.env.NEXT_PUBLIC_BASE_URL,
         headers: {

@@ -23,6 +23,8 @@ export default function Login() {
                 customClass: {
                     confirmButton: "bg-blue-500 text-white p-2 rounded-md",
                 },
+            }).then(r => {
+                window.location.href = '/';
             });
         } else {
             Swal.fire({

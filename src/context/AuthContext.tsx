@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AxiosInstance } from "@/utils/axios";
-
+import Cookies from "js-cookie";
 interface AuthContextProps {
     user: any;
     login: (username: string, password: string) => Promise<{ success: boolean, data: any }>;
@@ -46,6 +46,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         try {
             const res = await axios.post("/user/login", { username, password });
             if (res.data.success) {
+                Cookies.set("accessToken", res.data.data.token);
                 localStorage.setItem("token", res.data.data.token);
                 console.log(res.data.data);
                 setUser(res.data.data.username);
