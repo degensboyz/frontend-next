@@ -17,14 +17,14 @@ export default function ProductPage() {
     const id = queryString.get('id');
     const refreshStock = async () => {
         const { data } = await axios.get(`/product/product/${id}`);
-        setStock(data.data.ProductStock[0].stock || 0);
+        setStock(data.data.countStock || 0);
     };
 
     useEffect(() => {
         const fetchProduct = async () => {
             const { data } = await axios.get(`/product/product/${id}`);
-            setProduct(data.data);
-            setStock(data.data.ProductStock[0].stock || 0);
+            setProduct(data.data.product);
+            setStock(data.data.countStock || 0);
         }
         fetchProduct();
     }, []);
@@ -100,7 +100,7 @@ export default function ProductPage() {
                             >Checkout</button>
                         )}
                         {stock <= 0 && (
-                            <button className="bg-red-600 text-white px-4 py-2 rounded-md w-full disabled" disabled
+                            <button className="bg-red-500 text-white px-4 py-2 rounded-md w-full disabled cursor-not-allowed" disabled
                             >Out of Stock</button>
                         )}
                     </div>
