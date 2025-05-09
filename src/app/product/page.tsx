@@ -15,6 +15,9 @@ export default function ProductPage() {
     const [stock, setStock] = useState<number>(0);
     const queryString = useSearchParams();
     const id = queryString.get('id');
+    if(!id) {
+        window.location.href = '/';
+    }
     const refreshStock = async () => {
         const { data } = await axios.get(`/product/product/${id}`);
         setStock(data.data.countStock || 0);

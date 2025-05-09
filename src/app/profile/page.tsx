@@ -11,24 +11,27 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="flex flex-row h-screen bg-gray-900 mt-10 mx-8">
-      <div className="flex-1 flex flex-col items-center p-4">
-
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          <div className="">
-            <button onClick={() => handleMenuClick('Profile')} className="bg-blue-600 p-4 text-white rounded-md">ข้อมูลส่วนตัว</button>
-          </div>
-          <div className="">
-            <button onClick={() => handleMenuClick('History')} className="bg-blue-600 p-4 text-white rounded-md">ประวัติการซื้อ</button>
-          </div>
-          <div className="">
-            <button onClick={() => handleMenuClick('Change Password')} className="bg-blue-600 p-4 text-white rounded-md">เปลี่ยนรหัสผ่าน</button>
-          </div>
+    <div className="h-screen bg-gray-900 mt-10 mx-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 w-full">
+        <div className="">
+          <button onClick={() => handleMenuClick('Profile')} className={`p-2 text-white rounded-md w-full m-2 ${activeComponent === 'Profile' ? 'bg-blue-700' : 'bg-blue-400'}`}>ข้อมูลส่วนตัว</button>
         </div>
-        {activeComponent === 'Profile' && <About />}
-        {activeComponent === 'History' && <div className="mb-4 w-full"><ProfileHistory /></div>}
-        {activeComponent === 'Change Password' && <ChangePassword />}
+        <div className="">
+          <button onClick={() => handleMenuClick('History')} className={`p-2 text-white rounded-md w-full m-2 ${activeComponent === 'History' ? 'bg-blue-700' : 'bg-blue-400'}`}>ประวัติการซื้อ</button>
+        </div>
+        <div className="">
+          <button onClick={() => handleMenuClick('Change Password')} className={`p-2 text-white rounded-md w-full m-2 ${activeComponent === 'Change Password' ? 'bg-blue-700' : 'bg-blue-400'}`}>เปลี่ยนรหัสผ่าน</button>
+        </div>
+      </div>
 
+      <div className="flex flex-row">
+        <div className="flex-1 flex flex-col items-center p-4">
+
+          {activeComponent === 'Profile' && <About />}
+          {activeComponent === 'History' && <div className="mb-4 w-full"><ProfileHistory /></div>}
+          {activeComponent === 'Change Password' && <ChangePassword />}
+
+        </div>
       </div>
     </div>
   );

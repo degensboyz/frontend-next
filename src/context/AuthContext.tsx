@@ -4,11 +4,18 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AxiosInstance } from "@/utils/axios";
 import Cookies from "js-cookie";
+
+interface RegisterProps{
+    username: string;
+    password: string;
+    email: string;
+    phone: string;
+}
 interface AuthContextProps {
     user: any;
     login: (username: string, password: string) => Promise<{ success: boolean, data: any }>;
     logout: () => void;
-    register: (username: string, password: string) => Promise<{ success: boolean, data: any }>;
+    register: (props: RegisterProps) => Promise<{ success: boolean, data: any }>;
 }
 
 const AuthContext = createContext<AuthContextProps | null>(null);
@@ -68,9 +75,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             }
         }
     };
-    const register = async (username: string, password: string) => {
+    const register = async (props: RegisterProps) => {
         try {
-            const res = await axios.post("/user/register", { username, password });
+            const res = await axios.post("/user/register", props);
             if (res.data.success) {
                 return {
                     success: true,

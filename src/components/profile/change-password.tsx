@@ -49,9 +49,9 @@ export default function ChangePassword() {
         setLoading(false);
     }
     return (
-        <div>
-            <h1 className="text-2xl font-bold text-white mb-4">เปลี่ยนรหัสผ่าน</h1>
-            <h1 className="text-2xl font-bold text-white mb-4">ภาษาของแป้นพิมพ์: <p className="text-red-500">{lang.join(", ")}</p></h1>
+        <div className="w-full">
+            <h1 className="text-2xl font-bold text-white mb-4 text-center">เปลี่ยนรหัสผ่าน</h1>
+            <h1 className="text-2xl font-bold text-white mb-4 text-center">ภาษาของแป้นพิมพ์: <p className="text-red-500">{lang.join(", ")}</p></h1>
             {error && <div className="bg-red-500 p-4 rounded-md">
                 <p className="text-red-500 mb-4">{error}</p>
             </div>}
